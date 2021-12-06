@@ -1,0 +1,63 @@
+docker run -d --name mysql --privileged=true 
+-e MYSQL_ROOT_PASSWORD=123456
+-e MYSQL_USER="user1"
+-e MYSQL_PASSWORD="123456"
+-e MYSQL_DATABASE="food_delivery" -p 3306:3306 bitnami/mysql:5.7
+
+
+
+build service go nè 
+
+build ra execute file : trên window => $env:GOOS="linux" ; $env:GOARCH="adm64"
+=> go build -o fileName
+
+chạy ===> cái này là tên của container đang chạy
+
+docker run -d --name food-delivery  -e username=root
+-e PASSWORD=123456
+-e DATABASE_HOST=mysql
+-e DATABASE_PORT=3306
+-e DATABASE_NAME=ShopDelivery
+-e SECRET=abc 
+
+
+không phải nhảy dbhost qua mysql là đc đâu => 2 thằng này phải chung 1 network
+tạo 1 docker network bridge ...
+
+ docker run -d --name food-delivery -e username=root 
+-e PASSWORD=123456  -e DATABASE_HOST=mysql -e DATABASE_PORT=3306 
+-e DATABASE_NAME=ShopDelivery -e SECRET=abc 
+--network=fd-network
+ foodfelivery:v1
+
+===   tạo network hay volume trước đi (có bind-mount volume hay ko ,có thì tạo volume đi)
+=>   docker network create fd-network
+
+====  run con mysql đi 
+docker run -d --name fooddelivery \
+--network=fd-network \
+-e MYSQL_ROOT_PASSWORD="123456" \
+-e MYSQL_USER=bao \
+-e MYSQL_PASSWORD=123456 \
+-e MYSQL_DATABASE=FoodDelivery \
+-v ~/mysql:/bitnamy -p 3306:3306 bitnami/mysql:5.7
+
+Không mún người bên ngoài chạy vào IP với port của mình thì làm con reverse proxy thôi
+=== start con nginx proxy 
+docker run -d -p 80:80 -p 443:443 \
+--network tennetwork  --name nginx-proxy \
+-e ENABLE_IPV6=true  --privileged=true \
+-v ~/nginx/vhost.d:/etc/nginx/vhost.d \
+-v ~/nginx-certs:/etc/nginx/certs:ro  \
+-v ~/nginx-conf:/etc/nginx/conf.d \
+-v ~/nginx-logs:/var/log/nginx \
+-v /usr/share/nginx/html  \
+-v /var/run/docker.sock:/tmp/docker.sock:ro \
+--label nginx_proxy jwilder/nginx-proxy
+
+
+
+
+tao 1 file golang với port tùy 
+build ra file execute linux => image .
+deploy 

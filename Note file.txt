@@ -1,0 +1,78 @@
+Mutex Lock - giải quyết data racing
+
+search 1 chỗ thôi (nhà hàng,món ăn user). dùng pattern fetch API trong GORM và  
+exp tăng tải đề tạo nhiều go routine search nhiều service chẳng hạn
+https://www.youtube.com/watch?v=f6kdp27TYZs        
+
+đặt index cho cột 
+vd table cart : userid và foodid
+mình sẽ có nghiệp vụ là tìm giỏ hàng của user đó , chứ ko có nghiep vụ tìm food id theo user
+nên sẽ đặt cột userid sắp lên trước ,index vẫn đánh cho userid và foodid
+
+có thể chia 3 bảng xã,huyện,thành phố -> user sẽ mang 3 id của 3 thong tin đó . dễ truy vấn hơn để 1 address
+
+kinh nghiem chia bảng : nen chia bảng riêng vd : có thể để 1 bảng food_rating vs restaurant_rating lại chung 
+phân biệt bằng typeId . nhưng nếu hệ thống lớn lên => thì bảng này sẽ rất lớn .do có nhiều type =>nhiều dòng 
+=> nen chia ra 2 bảng food_rating và restaurant_rating .sẽ ko bị thắt cổ chai ở db nữa
+
+Trong hệ thống mua bán tiền bạc . nên lưu order_detail có 1 cột để snapshot cái giá lại .. nếu không qua ngày mai giá
+thay đổi thì lỗi đối soát tiền bạc rất nhiều 
+
+
+
+
+like count vídụ trong bảng là 1 con số thôi ko cần chính xác , tạo 1 con 
+job schedule cứ khoảng thoi gian nao đó lại đi update con số này trong bảng này thôi
+
+[REMOTE] AWS DEVOPS LEADER/MANAGER (USA Blockchain/NFT company)=>Bonus cho người giới thiệu đến 20tr
+● Thiết kế và triển khai các hệ thống có thể quy mô, có sẵn, an toàn và không có lỗi trên AWS cho sự phát triển và thử nghiệm của công ty chúng tôi Cloud Wallet, viRL Marketplace, NFT Launcher và Nền tảng Chơi game Play-to-earn.
+■ Yêu cầu
+● Tiếng Anh tốt (Tự tin)● Chứng chỉ AWS là điều cần thiết
+● Hơn 3 năm kinh nghiệm làm việc với cơ sở hạ tầng dựa trên AWS.
+● Chứng minh năng lực với các dịch vụ AWS sau: ECS, EC2, EBS, 
+S3, Glacier, RDS, VPC, Route53, ELB, IAM, CloudFront,
+Cloudformation, CloudWatch, QS, SES, Lambda
+● Thành thạo AWS OpsWorks for Chef Automate.
+● Trải nghiệm vòng đời phát triển phần mềm đầy đủ.
+● Hiểu sâu về hệ điều hành Linux và các khái niệm mạng lưới.
+● Kinh nghiệm xây dựng cơ sở hạ tầng có thể quy mô tại AWS.
+● Trải nghiệm với một hoặc nhiều AWS SDKs và/hoặc CLI.
+● Chuyên gia tận dụng các nguyên tắc Automation / DevOps, kinh nghiệm vận hành
+các công cụ, và có thể áp dụng các phương pháp tốt nhất để triển khai cơ sở hạ tầng và phần mềm
+
+
+
+GRAB
+Xài Envoy để tao ra service mess ket nối nhiều service vs nhau =>
+HTTP/2  and gRPC
+HTTP/1
+Massive concurency and designing  resilient algorithrms (thuật toán khôi phục khi serviec bị die
+nó sẽ tự động resileint)
+Iaas AWS , Google , Microsoft
+CICD => jenkin 
+Deploy service bằng docker ,scale service với docker swarm,scale bằng k8s 
+cấp phát máy chủ tự động bằng teraform
+Deploy cơ bản đc => CICD => service mess =>  streamming log => mornitoring service
+
+
+
+Cái thời gian khá lâu , chơi game đi 
+chơi 1 game mà nó cho mở 1 account trên máy mình thui . mà phải treo hay cày , hoặc máy windown chs game mac
+lựa chọn hồi đó là cài máy ảo .. 
+set up 1 coin máy ảo ,set ram ,set ổ cứng cpu , cài hệ điều hành nữa , gài game 
+=> rồi mún 4 account phải tạo 4 máy ảo . lỡ set dư ram máy ảo .phải shutdown lại rồi chỉnh rồi mở các acc lại 
+Combat đông thì máy shutdown phải kéo ram lên chạy lại 
+
+Đó là câu chuyện dùng máy ảo chạy các service của bạn 
+Sự phát trien ngành cloud và bán hosting .. containers là cong nghệ ảo hóa của linux ,docker giúp nó tồi ưu hơn 
+Cho nên từ virtual machine đi qua container thì sẽ ok hơn
+khởi động nhanh hơn máy ảo 
+ảo hóa về cả network , network ảo giúp các container lien kết vs nhau mà ko cần phải đi ra ngoài
+
+
+Tạo con server trên digitalocean . gen ssh key => 
+xong từ máy local ping xem .
+xong ssh root@ipv4 của server đó, vân tay là 123456 ... vọc thôi
+
+
+
